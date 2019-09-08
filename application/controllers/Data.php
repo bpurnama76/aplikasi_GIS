@@ -3,7 +3,7 @@
 /**
 * 
 */
-class Dashboard extends CI_Controller
+class Data extends CI_Controller
 {
 	
 	function __construct()
@@ -13,6 +13,7 @@ class Dashboard extends CI_Controller
 
 	function index() 
 	{
-		$this->template->load('template','dashboard/info');
+		$this->template->load('template','data/info');
 	}
+
 }

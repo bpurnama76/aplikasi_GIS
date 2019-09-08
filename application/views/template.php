@@ -4,16 +4,19 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>GISTARA - Management</title>
-	<link href="template/css/bootstrap.min.css" rel="stylesheet">
-	<link href="template/css/font-awesome.min.css" rel="stylesheet">
-	<link href="template/css/datepicker3.css" rel="stylesheet">
-	<link href="template/css/styles.css" rel="stylesheet">
+
+	<script src="<?php echo base_url(); ?>template/js/jquery-1.11.1.min.js"></script>
+	<link href="<?php echo base_url(); ?>template/css/bootstrap.min.css" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>template/css/font-awesome.min.css" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>template/css/datepicker3.css" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>template/css/styles.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>template/DataTables/datatables.min.css">
 	
 	<!--Custom Font-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 	<!--[if lt IE 9]>
-	<script src="template/js/html5shiv.js"></script>
-	<script src="template/js/respond.min.js"></script>
+	<script src="<?php echo base_url(); ?>template/js/html5shiv.js"></script>
+	<script src="<?php echo base_url(); ?>template/js/respond.min.js"></script>
 	<![endif]-->
 </head>
 <body>
@@ -24,7 +27,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span></button>
-					<a class="navbar-brand" href="#"><span>Lumino</span>Admin</a>
+					<a class="navbar-brand" href="<?php echo base_url(); ?>"><span>Dinas</span> Tata Ruang</a>
 					<ul class="nav navbar-top-links navbar-right">
 						<li class="dropdown"><a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
 							<em class="fa fa-envelope"></em><span class="label label-danger">15</span>
@@ -99,41 +102,40 @@
 					</div>
 				</form>
 				<ul class="nav menu">
-					<li class="active"><a href="index.html"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
-					<li><a href="widgets.html"><em class="fa fa-calendar">&nbsp;</em> Widgets</a></li>
-					<li><a href="charts.html"><em class="fa fa-bar-chart">&nbsp;</em> Charts</a></li>
-					<li><a href="elements.html"><em class="fa fa-toggle-off">&nbsp;</em> UI Elements</a></li>
-					<li><a href="panels.html"><em class="fa fa-clone">&nbsp;</em> Alerts &amp; Panels</a></li>
-					<li class="parent "><a data-toggle="collapse" href="#sub-item-1">
-						<em class="fa fa-navicon">&nbsp;</em> Multilevel <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
-					</a>
-					<ul class="children collapse" id="sub-item-1">
-						<li><a class="" href="#">
-							<span class="fa fa-arrow-right">&nbsp;</span> Sub Item 1
-						</a></li>
-						<li><a class="" href="#">
-							<span class="fa fa-arrow-right">&nbsp;</span> Sub Item 2
-						</a></li>
-						<li><a class="" href="#">
-							<span class="fa fa-arrow-right">&nbsp;</span> Sub Item 3
-						</a></li>
-					</ul>
-				</li>
-				<li><a href="login.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+					<?php
+					$main_menu = $this->db->get_where('tbl_menu',array('induk'=>0))->result();
+					foreach ($main_menu as $main) {
+						$sub_menu =$this->db->get_where('tbl_menu',array('induk'=>$main->id_menu));
+						if ($sub_menu->num_rows()>0) {
+							echo "<li class='parent '><a data-toggle='collapse' href='#".$main->link."'>
+							<em class='".$main->icon."'>&nbsp;</em> $main->nama_menu <span data-toggle='collapse' href='".$main->link."' class='icon pull-right'><em class='fa fa-plus'></em></span>
+						</a>
+						<ul class='children collapse' id='".$main->link."'>";
+							foreach ($sub_menu->result() as $sub) {
+								echo "<li><a class='' href='".$sub->link."'>
+								<span class='".$sub->icon."'>&nbsp;</span> ".$sub->nama_menu."
+							</a></li>";
+						}
+						echo "</ul></li>";
+					} else {
+						echo "<li class=''><a href='".$main->link."'><em class='".$main->icon."'>&nbsp;</em>".$main->nama_menu."</a></li>";	
+					}
+				}
+				?>
 			</ul>
 		</div><!--/.sidebar-->
 		<!--.main-->
-		<?php echo $contents; ?>		
+		<?php echo $contents; ?>
+
 		<!--/.main-->
 
-		<script src="template/js/jquery-1.11.1.min.js"></script>
-		<script src="template/js/bootstrap.min.js"></script>
-		<script src="template/js/chart.min.js"></script>
-		<script src="template/js/chart-data.js"></script>
-		<script src="template/js/easypiechart.js"></script>
-		<script src="template/js/easypiechart-data.js"></script>
-		<script src="template/js/bootstrap-datepicker.js"></script>
-		<script src="template/js/custom.js"></script>
+		<script src="<?php echo base_url(); ?>template/js/bootstrap.min.js"></script>
+		<script src="<?php echo base_url(); ?>template/js/chart.min.js"></script>
+		<script src="<?php echo base_url(); ?>template/js/chart-data.js"></script>
+		<script src="<?php echo base_url(); ?>template/js/easypiechart.js"></script>
+		<script src="<?php echo base_url(); ?>template/js/easypiechart-data.js"></script>
+		<script src="<?php echo base_url(); ?>template/js/bootstrap-datepicker.js"></script>
+		<script src="<?php echo base_url(); ?>template/js/custom.js"></script>
 		<script>
 			window.onload = function () {
 				var chart1 = document.getElementById("line-chart").getContext("2d");
