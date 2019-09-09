@@ -4,20 +4,20 @@
 				<li><a href="#">
 					<em class="fa fa-home"></em>
 				</a></li>
-				<li class="active">Data Users</li>
+				<li class="active">Data SIMB</li>
 			</ol>
 		</div><!--/.row-->
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Users Terdaftar</h1>
+				<h1 class="page-header">SIMB Terdaftar</h1>
 			</div>
 		</div><!--/.row-->
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						Daftar Users Pemilik Bangunan
+						Daftar SIMB
 						<ul class="pull-right panel-settings panel-button-tab-right">
 							<li class="dropdown">
 							<a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
@@ -52,10 +52,10 @@
 					<thead>
 						<tr>
 							<th class="text-center">No</th>
-							<th class="text-center">Foto</th>
 							<th class="text-center">Nama</th>
-							<th class="text-center">Telpon</th>
-							<th class="text-center">Email</th>
+							<th class="text-center">Lokasi Bangunan</th>
+							<th class="text-center">Status</th>
+							<th class="text-center">Nomor Izin</th>
 							<th class="text-center">Aksi</th>
 						</tr>
 					</thead>
@@ -71,7 +71,7 @@
 <script>
     $(document).ready(function() {
         var t = $('#table_users').DataTable( {
-            "ajax": '<?php echo site_url('users/data'); ?>',
+            "ajax": '<?php echo site_url('data/data'); ?>',
             "order": [[ 2, 'asc' ]],
             "columns": [
             {
@@ -80,10 +80,10 @@
                 "sClass": "text-center",
                 "orderable": false,
             },
-            { "data": "foto" },
             { "data": "nama_user" },
-            { "data": "telpon" },
-            { "data": "email", "width": "50px","sClass": "text-center"},
+            { "data": "lokasi_bangunan" },
+            { "data": "status_tanah", "width": "50px","sClass": "text-center"},
+            { "data": "nomor_izin" },
             { "data": "aksi","width": "75px", "sClass": "text-center" },
             ]
         } );

@@ -22,50 +22,44 @@
 				<span class="pull-right clickable panel-toggle panel-button-tab-right"><em class="fa fa-toggle-up"></em></span>
 				<span class="pull-right panel-toggle panel-button-tab-left"><em > <a href="data"><i class="fa fa-arrow-left"></i></a></em></span></div>
 				<div class="panel-body">
-					<?php echo form_open_multipart('users/add_users','role="form" class="form-horizontal"',); ?>
+					<?php echo form_open_multipart('users/add_users','role="form" class="form-horizontal"',);
+					echo form_hidden('id_user',$data_users['id_user']); ?>
 						<fieldset>
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="name">Nama</label>
 								<div class="col-md-9">
-									<input id="nama" name="nama_user" type="text" placeholder="Nama Lengkap" class="form-control">
+									<input id="nama" value="<?php echo $data_users['nama_user'] ?>" name="nama_user" type="text" placeholder="Nama Lengkap" class="form-control">
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="name">Tempat & Tanggal Lahir</label>
 								<div class="col-md-6">
-								<?php echo combo_list('tempat_lahir','tbl_kota','nama_kota','id_kota','id_kota',null); ?>
+								<?php echo combo_list('tempat_lahir','tbl_kota','nama_kota','id_kota',$data_users['tempat_lahir'],null); ?>
 								</div>
 								<div class="col-md-3">
-									<input id="tempat_lahir" name="tanggal_lahir" type="date" class="form-control">
+									<input id="tanggal_lahir" value="<?php echo $data_users['tempat_lahir'] ?>" name="tanggal_lahir" type="date" class="form-control">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="email">Your E-mail</label>
 								<div class="col-md-6">
-									<input id="email" name="email" type="email" placeholder="Email Anda" class="form-control">
+									<input id="email" name="email" type="email" placeholder="Email Anda" value="<?php echo $data_users['email'] ?>" class="form-control">
 								</div>
 								<div class="col-md-3">
-									<input id="text" name="telpon" type="telpon" placeholder="Nomor Telpon Anda" class="form-control">
+									<input id="text" value="<?php echo $data_users['telpon'] ?>" name="telpon" type="telpon" placeholder="Nomor Telpon Anda" class="form-control">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="message">Agama</label>
 								<div class="col-md-3">
-								<?php echo combo_list('agama','tbl_agama','nama_agama','kd_agama',null,"class='form-control'"); ?>
+								<?php echo combo_list('agama','tbl_agama','nama_agama','kd_agama',$data_users['agama'],"class='form-control'"); ?>
 								</div>
 								<div class="col-md-3">
-									<select name="gender" class="form-control">
-										<option value="L">Laki Laki</option>
-										<option value="P">Perempuan</option>
-									</select>
+								 <?php echo form_dropdown('gender', array('P'=>'Perempuan','L'=>'Laki-Laki'),$data_users['gender'],"class='form-control'"); ?>
 								</div>
 								<div class="col-md-3">
-									<select name="status" class="form-control">
-										<option value="M">Menikah</option>
-										<option value="BM">Belum Menikah</option>
-										<option value="O">Duda/Janda</option>
-									</select>
+								<?php echo form_dropdown('status', array('M'=>'Menikah','BM'=>'Belum Menikah','O'=>'Duda / Janda'),$data_users['status'],"class='form-control'"); ?>
 								</div>
 							</div>
 							<div class="form-group">
