@@ -51,21 +51,23 @@
 				<table id="TableData" class="align-middle mb-0 table table-bordered table-striped table-hover">
 					<thead>
 						<tr>
-							<th class="text-center">Nama Menu</th>
-							<th class="text-center">Nama Controller</th>
-							<th class="text-center">Icon</th>
-							<th class="text-center">Induk</th>
+							<th class="text-center">No</th>
+							<th class="text-center">Nama Petugas</th>
+							<th class="text-center">Email</th>
+							<th class="text-center">Jabatan</th>
 						</tr>
 					</thead>
 					<?php
-					$data = $this->db->get('tbl_menu');
+					$data = $this->db->get('tbl_petugas');
+					$no=1;
 					foreach ($data->result() as $row) {
 						echo "<tr>";
-						echo "<td>$row->nama_menu</td>";
-						echo "<td>$row->link</td>";
-						echo "<td>$row->icon</td>";
-						echo "<td class='text-center'>$row->induk</td>";
+						echo "<td class='text-center'>$no</td>";
+						echo "<td>$row->nama_petugas</td>";
+						echo "<td>$row->email</td>";
+						echo "<td class='text-center'>$row->jabatan</td>";
 						echo "</tr>";
+					$no++;
 					}
 					?>
 				</table>

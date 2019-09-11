@@ -7,6 +7,7 @@
 
 	<script src="<?php echo base_url(); ?>template/js/jquery-1.11.1.min.js"></script>
 	<link href="<?php echo base_url(); ?>template/css/bootstrap.min.css" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>template/fontawesome/css/all.min.css" rel="stylesheet">
 	<link href="<?php echo base_url(); ?>template/css/font-awesome.min.css" rel="stylesheet">
 	<link href="<?php echo base_url(); ?>template/css/datepicker3.css" rel="stylesheet">
 	<link href="<?php echo base_url(); ?>template/css/styles.css" rel="stylesheet">
@@ -107,18 +108,19 @@
 					foreach ($main_menu as $main) {
 						$sub_menu =$this->db->get_where('tbl_menu',array('induk'=>$main->id_menu));
 						if ($sub_menu->num_rows()>0) {
-							echo "<li class='parent '><a data-toggle='collapse' href='#".$main->link."'>
+							echo "<li class='parent '>
+							<a data-toggle='collapse' href='#".$main->link."'>
 							<em class='".$main->icon."'>&nbsp;</em> $main->nama_menu <span data-toggle='collapse' href='".$main->link."' class='icon pull-right'><em class='fa fa-plus'></em></span>
 						</a>
 						<ul class='children collapse' id='".$main->link."'>";
 							foreach ($sub_menu->result() as $sub) {
-								echo "<li><a class='' href='".$sub->link."'>
-								<span class='".$sub->icon."'>&nbsp;</span> ".$sub->nama_menu."
-							</a></li>";
+								echo "<li>"
+								.anchor($sub->link, "<span class='".$sub->icon."'>&nbsp;</span> ".($sub->nama_menu))."</li>";
 						}
 						echo "</ul></li>";
 					} else {
-						echo "<li class=''><a href='".$main->link."'><em class='".$main->icon."'>&nbsp;</em>".$main->nama_menu."</a></li>";	
+						echo "<li class=''>"
+						.anchor($main->link, "<em class='".$main->icon."'>&nbsp;</em>".($main->nama_menu))."</li>";	
 					}
 				}
 				?>
@@ -137,6 +139,7 @@
 		<script src="<?php echo base_url(); ?>template/js/easypiechart-data.js"></script>
 		<script src="<?php echo base_url(); ?>template/js/bootstrap-datepicker.js"></script>
 		<script src="<?php echo base_url(); ?>template/js/custom.js"></script>
+		<script type="<?php echo base_url(); ?>template/fontawesome/js/all.min.js"></script>
 		<script>
 			window.onload = function () {
 				var chart1 = document.getElementById("line-chart").getContext("2d");

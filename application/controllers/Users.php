@@ -1,11 +1,11 @@
 <?php 
-/**
-* 
-*/
+
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Users extends CI_Controller
 {
 
-    function __construct()
+    public function __construct()
     {
         parent:: __construct();
         $this->load->model('Model_users');
@@ -52,44 +52,60 @@ class Users extends CI_Controller
 
     function index()
     {
-        $this->template->load('template','data/users');
+        $this->template->load('template','users/list');
 
     }
 
-    function add_users()
+    function add()
     {
         if (isset($_POST['submit'])) {
+            $upload_foto = $this->upload_foto();
 
-            $this->Model_users->add();
+            $this->Model_users->add($upload_foto);
             redirect('users');
 
         } else {
-            $this->template->load('template','data/add_users');
+            $this->template->load('template','users/add');
         }
-                
+
     }
 
     function edit() 
     {
         if (isset($_POST['submit'])) {
-            $this->Model_users->edit();
+            $upload_foto = $this->upload_foto();
+
+            $this->Model_users->edit($upload_foto);
             redirect('users');
         } else {
-            $id                 = $this->uri->segment(3);
+            $id                  = $this->uri->segment(3);
             $data['data_users']  = $this->db->get_where('tbl_user',array('id_user'=>$id))->row_array();
-            $this->template->load('template','data/edit_users',$data);
+            $this->template->load('template','users/edit',$data);
         }
-                
+
     }
 
     function delete() 
     {
         $id_delete = $this->uri->segment(3);
         if (!empty($id_delete)) {
-            
+
             $this->db->where('id_user',$id_delete);
             $this->db->delete('tbl_user');
             redirect('users');
         }
+    }
+
+    function upload_foto() {
+        $config['upload_path']          = './uploads/';
+        $config['allowed_types']        = 'jpg|png';
+        $config['max_size']             = 2048;
+        $this->load->library('upload', $config);
+
+            //proses upload
+
+        $this->upload->do_upload('userfile');
+        $upload = $this->upload->data();
+        return $upload['file_name'];
     }
 }

@@ -26,20 +26,21 @@
 								<ul class="dropdown-menu dropdown-menu-right">
 									<li>
 										<ul class="dropdown-settings">
-										<li><?php echo anchor('users/add_users','<em class="fa fa-user-plus"> Tambah Data</em>'); ?>
+										<li><?php echo anchor('data/add_simb',"<em class='fa fa-user-plus'></em> Tambah Data Formulir"); ?>
 										</li>
 											<li class="divider"></li>
-											<li><a href="">
-												<em class="fa fa-user"></em> Izin Aktif
-											</a></li>
+										<li><?php echo anchor('data/add_simb_excel',"<em class='fa fa-address-card'></em> Tambah Data Via Excel"); ?>
+										</li>
 											<li class="divider"></li>
-											<li><a href="">
-												<em class="fa fa-power-off"></em> Izin Tidak Aktif
-											</a></li>
+											<li>
+											<?php echo anchor('',"<em class='fa fa-power-off'></em> Izin Aktif"); ?></li>
 											<li class="divider"></li>
-											<li><a href="users/add_izin_users">
-												<em class="fa fa-clone"></em> Perpanjang Izin
-											</a></li>
+											<li>
+											<?php echo anchor('',"<em class='fa fa-exclamation-triangle'></em> Izin Tidak Aktif");?>
+											</li>
+											<li class="divider"></li>
+											<li>
+											<?php echo anchor('',"<em class='fa fa-clone'></em> Perpanjang Izin"); ?></li>
 										</ul>
 									</li>
 								</ul>
@@ -52,10 +53,11 @@
 					<thead>
 						<tr>
 							<th class="text-center">No</th>
-							<th class="text-center">Nama</th>
-							<th class="text-center">Lokasi Bangunan</th>
-							<th class="text-center">Status</th>
 							<th class="text-center">Nomor Izin</th>
+							<th class="text-center">Pemilik</th>
+							<th class="text-center">Lokasi Bangunan</th>
+							<th class="text-center">Status Tanah</th>
+							<th class="text-center">Kategori</th>
 							<th class="text-center">Aksi</th>
 						</tr>
 					</thead>
@@ -80,10 +82,11 @@
                 "sClass": "text-center",
                 "orderable": false,
             },
+            { "data": "nomor_izin" },
             { "data": "nama_user" },
             { "data": "lokasi_bangunan" },
             { "data": "status_tanah", "width": "50px","sClass": "text-center"},
-            { "data": "nomor_izin" },
+            { "data": "kategori" },
             { "data": "aksi","width": "75px", "sClass": "text-center" },
             ]
         } );
