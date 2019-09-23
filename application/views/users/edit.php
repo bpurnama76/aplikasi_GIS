@@ -20,7 +20,7 @@
 				<div class="panel-heading">
 					Formulir Mengubah Data User
 					<span class="pull-right clickable panel-toggle panel-button-tab-right"><em class="fa fa-toggle-up"></em></span>
-					<span class="pull-right panel-toggle panel-button-tab-left"><em > <a href="data"><i class="fa fa-arrow-left"></i></a></em></span></div>
+					<span class="pull-right panel-toggle panel-button-tab-left"><em > <a href="<?php echo base_url('users') ?>"><i class="fa fa-arrow-left"></i></a></em></span></div>
 					<div class="panel-body">
 						<?php echo form_open_multipart('users/edit','role="form" class="form-horizontal"',);
 						echo form_hidden('id_user',$data_users['id_user']); ?>
