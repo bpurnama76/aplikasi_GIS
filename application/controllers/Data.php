@@ -63,7 +63,7 @@ class Data extends CI_Controller
             $this->Model_data->add_simb();
             redirect('data/list_simb');
         } else {
-        $this->template->load('template','data/add_simb');    
+            $this->template->load('template','data/add_simb');    
         }
          
     }
